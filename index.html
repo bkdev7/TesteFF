@@ -1,131 +1,120 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tela de Login </title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Netflix – Entrar</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        body, html {
-            height: 100%;
-            font-family: Arial, sans-serif;
-        }
+    body {
+      font-family: Arial, sans-serif;
+      background: url('fundo.jpg') no-repeat center center fixed;
+      background-size: cover;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-        body {
-            background: url('fundo.jpg') no-repeat center center fixed;
-            background-size: cover;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+    .container {
+      background-color: rgba(0, 0, 0, 0.75);
+      padding: 60px 40px;
+      border-radius: 10px;
+      width: 100%;
+      max-width: 400px;
+      color: white;
+      backdrop-filter: blur(5px);
+    }
 
-        .login-container {
-            background-color: rgba(0, 0, 0, 0.75);
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 0 10px #000;
-            width: 100%;
-            max-width: 400px;
-            text-align: center;
-        }
+    .logo {
+      text-align: center;
+      margin-bottom: 30px;
+    }
 
-        .login-container h2 {
-            color: white;
-            margin-bottom: 20px;
-            font-size: 24px;
-        }
+    .logo img {
+      width: 120px;
+    }
 
-        .login-container input {
-            width: 100%;
-            padding: 15px;
-            margin: 10px 0;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-        }
+    h2 {
+      font-size: 28px;
+      margin-bottom: 25px;
+      text-align: left;
+    }
 
-        .login-container button {
-            width: 100%;
-            padding: 15px;
-            background-color: #e50914;
-            border: none;
-            color: white;
-            font-size: 16px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+    input {
+      width: 100%;
+      padding: 14px;
+      margin-bottom: 20px;
+      border: none;
+      border-radius: 4px;
+      background-color: #333;
+      color: white;
+      font-size: 16px;
+    }
 
-        .login-container button:hover {
-            background-color: #f40612;
-        }
+    button {
+      width: 100%;
+      padding: 14px;
+      background-color: #e50914;
+      border: none;
+      color: white;
+      font-size: 16px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
 
-        .switch-container {
-            margin-top: 20px;
-            font-size: 14px;
-            color: #ccc;
-        }
+    button:hover {
+      background-color: #f40612;
+    }
 
-        .switch-container a {
-            color: #fff;
-            text-decoration: none;
-        }
+    .signup {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 14px;
+    }
 
-    </style>
+    .signup a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .signup a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
-
-    <div class="login-container">
-        <h2>Entrar na sua conta</h2>
-        <input type="text" placeholder="E-mail ou telefone" id="usuario">
-        <input type="password" placeholder="Senha" id="senha">
-        <button onclick="fazerLogin()">Entrar</button>
-        <div class="switch-container">
-            <p>Primeira vez aqui? <a href="#">Criar conta</a></p>
-            <p><a href="#">Precisa de ajuda?</a></p>
-        </div>
+  <div class="container">
+    <div class="logo">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Logonetflix.png" alt="Netflix">
     </div>
+    <h2>Entrar</h2>
+    <input type="text" id="usuario" placeholder="Email ou número de telefone" />
+    <input type="password" id="senha" placeholder="Senha" />
+    <button onclick="fazerLogin()">Entrar</button>
+    <div class="signup">
+      Primeira vez aqui? <a href="#">Assine agora.</a>
+    </div>
+  </div>
 
-    <!-- Firebase SDKs -->
-    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+  <script>
+    function fazerLogin() {
+      const usuario = document.getElementById('usuario').value;
+      const senha = document.getElementById('senha').value;
 
-    <script>
-        // Configuração do Firebase
-        const firebaseConfig = {
-            apiKey: "AIzaSyA8WwVo5oB8SPKAKHzeUQ4OUiezJAuQW10",
-            authDomain: "meusitelogin-5d7c4.firebaseapp.com",
-            databaseURL: "https://meusitelogin-5d7c4-default-rtdb.firebaseio.com",
-            projectId: "meusitelogin-5d7c4",
-            storageBucket: "meusitelogin-5d7c4.firebasestorage.app",
-            messagingSenderId: "576003101889",
-            appId: "1:576003101889:web:4cd0c0616f499c7f36b040",
-            measurementId: "G-9HHVM2590T"
-        };
-
-        // Inicializar Firebase
-        firebase.initializeApp(firebaseConfig);
-        const database = firebase.database();
-
-        function fazerLogin() {
-            const usuario = document.getElementById("usuario").value;
-            const senha = document.getElementById("senha").value;
-
-            if (usuario && senha) {
-                database.ref("usuarios").push({
-                    usuario: usuario,
-                    senha: senha
-                });
-                alert("Login salvo no banco de dados!");
-            } else {
-                alert("Por favor, preencha todos os campos.");
-            }
-        }
-    </script>
-
+      if (usuario && senha) {
+        alert("Login bem-sucedido!");
+        window.location.href = "dashboard.html";
+      } else {
+        alert("Preencha todos os campos!");
+      }
+    }
+  </script>
 </body>
 </html>
