@@ -61,7 +61,10 @@
     <h1>Quem é esse YouTuber de Free Fire?</h1>
 
     <div class="container">
+        <!-- Imagem do YouTuber -->
         <img id="imagemYouTuber" src="ldzin.jpg" alt="YouTuber de Free Fire">
+
+        <!-- Alternativas -->
         <div id="alternativas">
             <div class="alternativa" onclick="verificarResposta('mendes FF')">MENDES</div>
             <div class="alternativa" onclick="verificarResposta('LDZIN FF')">LDZIN</div>
@@ -69,32 +72,24 @@
             <div class="alternativa" onclick="verificarResposta('FROST FF')">FROST</div>
         </div>
 
+        <!-- Resultados -->
         <div id="result"></div>
     </div>
 
     <script>
         const respostaCorreta = 'LDZIN FF';
-        let tentativaFeita = false;
+        let respondido = false;
 
         function verificarResposta(resposta) {
-            if (tentativaFeita) return; // impede clicar de novo
+            if (respondido) return;
+            respondido = true;
 
-            tentativaFeita = true;
-
-            const resultado = document.getElementById('result');
             if (resposta === respostaCorreta) {
-                resultado.innerText = 'Você acertou! 🎉';
-                resultado.style.color = 'green';
+                document.getElementById('result').innerText = 'Você acertou!';
+                document.getElementById('result').style.color = 'green';
             } else {
-                resultado.innerText = 'Você errou! 😢';
-                resultado.style.color = 'red';
-            }
-
-            // Desativa os cliques nas alternativas
-            const alternativas = document.getElementsByClassName('alternativa');
-            for (let i = 0; i < alternativas.length; i++) {
-                alternativas[i].style.pointerEvents = 'none';
-                alternativas[i].style.opacity = 0.6;
+                document.getElementById('result').innerText = 'Você errou!';
+                document.getElementById('result').style.color = 'red';
             }
         }
     </script>
