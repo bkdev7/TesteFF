@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo de YouTubers Free Fire</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1e1e1e;
+            color: white;
+            text-align: center;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        img {
+            width: 300px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        button {
+            background-color: #ff8000;
+            color: white;
+            padding: 15px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #e77b00;
+        }
+
+        #result {
+            margin-top: 30px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .alternativa {
+            background-color: #333;
+            padding: 10px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .alternativa:hover {
+            background-color: #ff8000;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Quem é esse YouTuber de Free Fire?</h1>
+
+    <div class="container">
+        <img id="imagemYouTuber" src="imagens/imagem_youtuber1.jpg" alt="YouTuber de Free Fire">
+
+        <div id="alternativas">
+            <div class="alternativa" onclick="verificarResposta('mendes FF')">MENDES</div>
+            <div class="alternativa" onclick="verificarResposta('LDZIN FF')">LDZIN</div>
+            <div class="alternativa" onclick="verificarResposta('TWO9')">TWO9</div>
+            <div class="alternativa" onclick="verificarResposta('FROST FF')">FROST</div>
+        </div>
+
+        <div id="result"></div>
+    </div>
+
+    <script>
+        const respostaCorreta = 'LDZIN FF';
+        let tentativaFeita = false;
+
+        function verificarResposta(resposta) {
+            if (tentativaFeita) return; // impede clicar de novo
+
+            tentativaFeita = true;
+
+            const resultado = document.getElementById('result');
+            if (resposta === respostaCorreta) {
+                resultado.innerText = 'Você acertou! 🎉';
+                resultado.style.color = 'green';
+            } else {
+                resultado.innerText = 'Você errou! 😢';
+                resultado.style.color = 'red';
+            }
+
+            // Desativa os cliques nas alternativas
+            const alternativas = document.getElementsByClassName('alternativa');
+            for (let i = 0; i < alternativas.length; i++) {
+                alternativas[i].style.pointerEvents = 'none';
+                alternativas[i].style.opacity = 0.6;
+            }
+        }
+    </script>
+
+</body>
+</html>
