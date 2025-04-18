@@ -1,0 +1,62 @@
+/* style.css */
+
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom, #87CEFA, #FFFFFF);
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+
+.centralizado {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+}
+
+h1 {
+    font-size: 48px;
+    color: #ff6347;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 24px;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+.botao {
+    background-color: #32CD32;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 20px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    margin: 10px;
+}
+
+.botao:hover {
+    background-color: #228B22;
+    transform: scale(1.1);
+}
+
+.fade-in {
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Ajuste do canvas */
+#pista {
+    border: 5px solid #FFD700;
+    background-color: #D3D3D3;
+    border-radius: 10px;
+}
