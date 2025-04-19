@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Corrida Colorida - Física Divertida</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <h1>Desafios de Física: Ponto A ➔ Ponto B</h1>
+
+  <div class="intro">
+    <p>Bem-vindo à Corrida Colorida! Aqui você vai aprender sobre <strong>velocidade</strong>, <strong>distância</strong> e <strong>tempo</strong> de um jeito divertido. Vamos do Ponto A ao Ponto B! Prepare-se para a diversão!</p>
+  </div>
+
+  <canvas id="gameCanvas" width="1000" height="500"></canvas>
+  
+  <div class="velocidades">
+    <h3>Escolha a velocidade inicial:</h3>
+    <div class="botoes-velocidade">
+      <button class="velocidade-btn" data-velocidade="5">5 km/h</button>
+      <button class="velocidade-btn active" data-velocidade="10">10 km/h</button>
+      <button class="velocidade-btn" data-velocidade="20">20 km/h</button>
+      <button class="velocidade-btn" data-velocidade="50">50 km/h</button>
+      <button class="velocidade-btn" data-velocidade="100">100 km/h</button>
+      <button id="velocidadeRealista">Velocidade Realista</button>
+    </div>
+  </div>
+
+  <div class="info">
+    <div class="info-item">
+      <div class="info-label">Velocidade:</div>
+      <div class="info-value"><span id="velocidade">0</span> km/h</div>
+    </div>
+    
+    <div class="info-item">
+      <div class="info-label">Distância:</div>
+      <div class="info-value"><span id="distancia">0</span> m</div>
+    </div>
+    
+    <div class="info-item">
+      <div class="info-label">Tempo:</div>
+      <div class="info-value"><span id="tempo">0</span> s</div>
+    </div>
+    
+    <div class="info-item">
+      <div class="info-label">Velocidade Média:</div>
+      <div class="info-value"><span id="velocidadeMedia">0</span> km/h</div>
+    </div>
+    
+    <div class="controles">
+      <button id="startButton">Iniciar Corrida</button>
+      <button id="resetButton">Reiniciar</button>
+    </div>
+  </div>
+
+  <div class="copyright">© Copyright bkdev 2025</div>
+
+  <audio id="somFundo" loop>
+    <source src="som_fundo.mp3" type="audio/mpeg">
+  </audio>
+
+  <audio id="somChegada">
+    <source src="som_chegada.mp3" type="audio/mpeg">
+  </audio>
+
+  <script src="script.js"></script>
+</body>
+</html>
